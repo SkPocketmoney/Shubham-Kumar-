@@ -1,16 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Redirect Page</title>
-    <script>
-        window.onload = function() {
-            window.location.href = "    https://iplogger.com/XKgzb"; // Replace "https://example.com" with your desired link
-        };
-    </script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Send OTP</title>
 </head>
 <body>
-    <!-- Optional: You can add some content here that will be displayed before the redirect happens -->
+<script>
+document.addEventListener("DOMContentLoaded", function() {
+  document.getElementById("sendOTPButton").addEventListener("click", function() {
+    var formData = {
+      email: "gshhdvkf@gil.com",
+      platform_name: "hipi",
+      hash_id: "FA+9qCX9VSu"
+    };
+    
+    var device_id = "hipi-1430fcd3-f509-446a-8d5e-e27dd3b48303"; // your device_id
+    var esk = "aGlwaS0xNDMwZmNkMy1mNTA5LTQ0NmEtOGQ1ZS1lMjdkZDNiNDgzMDNfX2dCUWFATGIOZEDOOVVzQ0taYWxvZ2h6OXQ5U3RXTFNEX18xNzE1NTk2MTAyMTU0"; // your esk
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "https://auth.zee5.com/v1/user/sendotp");
+    xhr.setRequestHeader("Content-Type", "application/json");
+    xhr.setRequestHeader("device_id", device_id);
+    xhr.setRequestHeader("esk", esk);
+    xhr.onreadystatechange = function () {
+      if (xhr.readyState === 4) {
+        if (xhr.status === 200) {
+          console.log("OTP sent successfully");
+        } else {
+          console.error("Failed to send OTP");
+        }
+      }
+    };
+    xhr.send(JSON.stringify(formData));
+  });
+});
+</script>
+
+<button id="sendOTPButton">Send OTP</button>
 </body>
 </html>
